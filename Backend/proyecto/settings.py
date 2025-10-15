@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "app",
+    "autenticacion",
     'corsheaders',
     'rest_framework',
 ]
@@ -58,7 +59,7 @@ ROOT_URLCONF = "proyecto.urls"
 
 #en produccion (CORS_ALLOWED_ORIGINS).
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Puerto por defecto de Vite
+    "http://localhost:5173",  # Puerto de Vite
 ]
 
 

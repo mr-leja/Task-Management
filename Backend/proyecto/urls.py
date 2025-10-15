@@ -5,5 +5,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-      path("api/", include("app.urls")),  # agrega el prefijo /api/
+    path("api/", include("app.urls")),
+    path("api/", include("autenticacion.urls")), 
 ]
