@@ -57,6 +57,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "proyecto.urls"
 
 
+
 #en produccion (CORS_ALLOWED_ORIGINS).
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Puerto de Vite

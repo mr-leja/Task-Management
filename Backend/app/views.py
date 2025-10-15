@@ -1,4 +1,4 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Tarea
@@ -11,8 +11,11 @@ def listar_tareas(request):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@authentication_classes([])
 def crear_tarea(request):
-    serializer = TareaSerializer(data=request.data)
+    data = request.data.copy()
+    data['IdUsuario'] = request.user.id  # asigna el usuario autenticado
+    serializer = TareaSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
