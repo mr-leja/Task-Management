@@ -23,17 +23,30 @@ function Login() {
     }
 
     try {
+      // 👇 Enviar las credenciales al backend
       const res = await api.post("/usuarios/login/", form);
-      localStorage.setItem("usuario", JSON.stringify(res.data.usuario));
 
+      // ✅ Guardar el token JWT si el backend lo devuelve
+      if (res.data.access || res.data.token) {
+        const token = res.data.access || res.data.token;
+        localStorage.setItem("token", token);
+      }
+
+      // ✅ Guardar los datos del usuario (opcional)
+      if (res.data.usuario) {
+        localStorage.setItem("usuario", JSON.stringify(res.data.usuario));
+      }
+
+      // ✅ Mostrar mensaje de bienvenida
       Swal.fire({
         title: "Bienvenido",
-        text: `Hola ${res.data.usuario.Nombre}`,
+        text: `Hola ${res.data.usuario?.Nombre || "Usuario"}`,
         icon: "success",
         timer: 2000,
         showConfirmButton: false,
       });
 
+      // ✅ Redirigir a la lista de tareas
       navigate("/tareas/");
     } catch (err) {
       Swal.fire(
