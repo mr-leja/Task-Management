@@ -1,6 +1,7 @@
 from django.db import models
+from autenticacion.models import Usuario
 
-from django.db import models
+
 
 class Tarea(models.Model):
     Id = models.AutoField(primary_key=True)
@@ -8,9 +9,10 @@ class Tarea(models.Model):
     descripcion = models.TextField()
     FechaVence = models.DateField()
     Estado = models.BooleanField(default=False)  # tinyint(1) → booleano
+    IdUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, db_column='IdUsuario', related_name='tareas')
 
     class Meta:
-        db_table = 'tarea'  # nombre exacto de la tabla en MySQL
+        db_table = 'tarea'
 
     def __str__(self):
         return self.Titulo
