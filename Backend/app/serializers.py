@@ -4,4 +4,4 @@ from .models import Tarea
 class TareaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tarea
-        fields = '__all__'
+        fields = ['Id', 'Titulo', 'Descripcion', 'FechaVence', 'Estado', 'IdUsuario']
